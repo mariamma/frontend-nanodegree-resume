@@ -71,11 +71,13 @@ var education = {
 	}]
 };
 
-diaplayBioInfo();
+bio.display = diaplayBioInfo;
  
-for(var i=0; i<work.jobs.length; i++){
-	$("#workExperience").append(HTMLworkStart);
-	displayWork(i);	
+work.display = function(){ 
+	for(var i=0; i<work.jobs.length; i++){
+		$("#workExperience").append(HTMLworkStart);
+		displayWork(i);	
+	}
 }
 
 projects.display = function(){
@@ -91,10 +93,10 @@ projects.display = function(){
 	}
 };
 
+bio.display();
+work.display();
 projects.display();
-
-education.display = displayEducation();
-
+education.display = displayEducation;
 education.display();
 
 
