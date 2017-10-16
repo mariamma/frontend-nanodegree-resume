@@ -14,12 +14,13 @@ var bio = {
  		"twitter": "@johndoe",
  		"location" : "San Francisco"
  	},
- 	"picture" : "images/fry.jpg",
+ 	"biopic" : "images/fry.jpg",
  	"welcomeMsg" : "Eager to jump into a pool of talented people like Scrooge McDuck!!!",
  	"skills": ["programming", "awesome thinking", "algorithms", "saving the universe"]
  };
 
-var work = [{
+var work = {
+	"jobs":[{
 	 	"companyName": "Planet Express",
 	 	"role": "Delivery Boy",
 	 	"yearOfJoining": "Dec2014 - inprogress",
@@ -33,10 +34,11 @@ var work = [{
 	 	"location": "Manhattan, NY",
 	 	"description": "Depending on the nature of the Ajax application, dynamic page updates may disrupt user interactions, particularly if the Internet connection is slow or unreliable. For example, editing a search field may trigger a query to the server for search completions, but the user may not know that a search completion popup is forthcoming, and if the Internet connection is slow, the popup list may show up at an inconvenient time, when the user has already proceeded to do something else."
  	}
- ];
+ ]};
+
 
 var projects = {
- 	"projectDetails":[
+ 	"projects":[
  	{
   		"title":"Random Mapping",
   		"description": "Because of the asynchronous nature of Ajax, each chunk of data that is sent or received by the client occurs in a connection established specifically for that event. This creates a requirement that for every action, the client must poll the server, instead of listening, which incurs significant overhead. This overhead leads to several times higher latency with Ajax than what can be achieved with a technology such as websockets.",
@@ -84,7 +86,7 @@ var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
 var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
 var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
 var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-var formattedPicture = HTMLbioPic.replace("%data%",bio.picture);
+var formattedPicture = HTMLbioPic.replace("%data%",bio.biopic);
 var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%",bio.welcomeMsg);
 
 var formattedContactEmail = HTMLcontactGeneric.replace("%data%", bio.contacts.mobile)
@@ -106,17 +108,17 @@ if(bio.skills.length > 0){
 	}
 }	
  
-for(var key in work){
+for(var key in work.jobs){
 	$("#workExperience").append(HTMLworkStart);
 	displayWork(key);	
 }
 
 projects.display = function(){
-	for(var key in projects.projectDetails){		
-		var formattedProjectTitle = HTMLprojectTitle.replace("%data%",projects.projectDetails[key].title);
-		var formattedProjectDates = HTMLprojectDates.replace("%data%",projects.projectDetails[key].year);
-		var formattedProjectDescription = HTMLprojectDescription.replace("%data%",projects.projectDetails[key].description);
-		var formattedprojectImage = HTMLprojectImage.replace("%data%",projects.projectDetails[key].projectimage);
+	for(var key in projects.projects){		
+		var formattedProjectTitle = HTMLprojectTitle.replace("%data%",projects.projects[key].title);
+		var formattedProjectDates = HTMLprojectDates.replace("%data%",projects.projects[key].year);
+		var formattedProjectDescription = HTMLprojectDescription.replace("%data%",projects.projects[key].description);
+		var formattedprojectImage = HTMLprojectImage.replace("%data%",projects.projects[key].projectimage);
 		$("#projects").append(HTMLprojectStart);
 		$(".project-entry:last").append(formattedProjectTitle).append(formattedProjectDates)
 			.append(formattedProjectDescription).append(formattedprojectImage)
@@ -144,11 +146,11 @@ $("#footerContacts").append(formattedMobile).append(formattedEmail)
 
 
 function displayWork(key){
-	var formattedWorkEmployer = HTMLworkEmployer.replace("%data%",work[key].companyName);
-	var formattedWorkTitle = HTMLworkTitle.replace("%data%",work[key].role);
-	var formattedWorkDates = HTMLworkDates.replace("%data%",work[key].yearOfJoining);
-	var formattedWorkLocation = HTMLworkLocation.replace("%data%",work[key].location);
-	var formattedWorkDescription = HTMLworkDescription.replace("%data%",work[key].description);
+	var formattedWorkEmployer = HTMLworkEmployer.replace("%data%",work.jobs[key].companyName);
+	var formattedWorkTitle = HTMLworkTitle.replace("%data%",work.jobs[key].role);
+	var formattedWorkDates = HTMLworkDates.replace("%data%",work.jobs[key].yearOfJoining);
+	var formattedWorkLocation = HTMLworkLocation.replace("%data%",work.jobs[key].location);
+	var formattedWorkDescription = HTMLworkDescription.replace("%data%",work.jobs[key].description);
 	var formattedWorkEmployerTitle = formattedWorkEmployer + formattedWorkTitle;
 	$(".work-entry:last").append(formattedWorkEmployerTitle)
 			.append(formattedWorkDates).append(formattedWorkLocation)
