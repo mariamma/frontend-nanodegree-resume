@@ -78,7 +78,7 @@ work.display = function(){
 		$("#workExperience").append(HTMLworkStart);
 		displayWork(i);	
 	}
-}
+};
 
 projects.display = function(){
 	for(var key=0; key<projects.projects.length; key++){		
@@ -150,12 +150,13 @@ function displayWork(key){
 }
 
 function displayEducation(){
-	for(var i=0; i<education.schools.length; i++){
+	var i;
+	for(i=0; i<education.schools.length; i++){
 		$("#education").append(HTMLschoolStart);
 		displaySchool(i);		
 	}
 
-	for(var i=0; i<education.onlineCourses.length; i++){
+	for(i=0; i<education.onlineCourses.length; i++){
 		$(".education-entry:last").append(HTMLonlineClasses);
 		displayOnlineCourses(i);		
 	}
