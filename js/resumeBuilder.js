@@ -93,15 +93,9 @@ projects.display = function(){
 
 projects.display();
 
-for(var i=0; i<education.schools.length; i++){
-	$("#education").append(HTMLschoolStart);
-	displaySchool(i);		
-}
+education.display = displayEducation();
 
-for(var i=0; i<education.onlineCourses.length; i++){
-	$(".education-entry:last").append(HTMLonlineClasses);
-	displayOnlineCourses(i);		
-}
+education.display();
 
 
 
@@ -153,6 +147,17 @@ function displayWork(key){
 			.append(formattedWorkDescription);
 }
 
+function displayEducation(){
+	for(var i=0; i<education.schools.length; i++){
+		$("#education").append(HTMLschoolStart);
+		displaySchool(i);		
+	}
+
+	for(var i=0; i<education.onlineCourses.length; i++){
+		$(".education-entry:last").append(HTMLonlineClasses);
+		displayOnlineCourses(i);		
+	}
+}
 
 function displaySchool(key){
 	var formattedSchoolName = HTMLschoolName.replace("%data%",education.schools[key].name);
