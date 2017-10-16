@@ -1,9 +1,3 @@
-/*
-This is empty on purpose! Your code to build the resume will go here.
- */
-
-
-
 var bio = {
  	"name" : "John Doe",
  	"role" : "Developer",
@@ -35,7 +29,6 @@ var work = {
 	 	"description": "Depending on the nature of the Ajax application, dynamic page updates may disrupt user interactions, particularly if the Internet connection is slow or unreliable. For example, editing a search field may trigger a query to the server for search completions, but the user may not know that a search completion popup is forthcoming, and if the Internet connection is slow, the popup list may show up at an inconvenient time, when the user has already proceeded to do something else."
  	}
  ]};
-
 
 var projects = {
  	"projects":[
@@ -78,43 +71,15 @@ var education = {
 	}]
 };
 
-
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formatterRole = HTMLheaderRole.replace("%data%",bio.role);
-var formattedMobile = HTMLmobile.replace("%data%",bio.contacts.mobile);
-var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-var formattedPicture = HTMLbioPic.replace("%data%",bio.biopic);
-var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%",bio.welcomeMsg);
-
-var formattedContactEmail = HTMLcontactGeneric.replace("%data%", bio.contacts.mobile)
-				.replace("%contact%","mobile");
-var formattedContacts = formattedContactEmail;				
-
-$("#header").prepend(formatterRole).prepend(formattedName)
-	.append(formattedPicture).append(formattedWelcomeMsg);
-
-$("#topContacts").append(formattedMobile).append(formattedEmail)
-	.append(formattedGithub).append(formattedTwitter)
-	.append(formattedLocation);
-
-if(bio.skills.length > 0){
-	$("#header").append(HTMLskillsStart);
-	for( var key in bio.skills){
-		var formattedSkills = HTMLskills.replace("%data%", bio.skills[key]);
-		$("#skills").append(formattedSkills);
-	}
-}	
+diaplayBioInfo();
  
-for(var key in work.jobs){
+for(var i=0; i<work.jobs.length; i++){
 	$("#workExperience").append(HTMLworkStart);
-	displayWork(key);	
+	displayWork(i);	
 }
 
 projects.display = function(){
-	for(var key in projects.projects){		
+	for(var key=0; key<projects.projects.length; key++){		
 		var formattedProjectTitle = HTMLprojectTitle.replace("%data%",projects.projects[key].title);
 		var formattedProjectDates = HTMLprojectDates.replace("%data%",projects.projects[key].year);
 		var formattedProjectDescription = HTMLprojectDescription.replace("%data%",projects.projects[key].description);
@@ -124,26 +89,57 @@ projects.display = function(){
 			.append(formattedProjectDescription).append(formattedprojectImage)
 			.append(formattedprojectImage);					
 	}
-	
-}
+};
+
 projects.display();
 
-for(var key in education.schools){
+for(var i=0; i<education.schools.length; i++){
 	$("#education").append(HTMLschoolStart);
-	displaySchool(key);		
+	displaySchool(i);		
 }
 
-for(var key in education.onlineCourses){
+for(var i=0; i<education.onlineCourses.length; i++){
 	$(".education-entry:last").append(HTMLonlineClasses);
-	displayOnlineCourses(key);		
+	displayOnlineCourses(i);		
 }
 
-$("#main").append(internationalizeButton);
-$("#mapDiv").append(googleMap);
-$("#footerContacts").append(formattedMobile).append(formattedEmail)
-	.append(formattedGithub).append(formattedTwitter)
-	.append(formattedLocation);
 
+
+
+function diaplayBioInfo(){
+	var formattedName = HTMLheaderName.replace("%data%", bio.name);
+	var formatterRole = HTMLheaderRole.replace("%data%",bio.role);
+	var formattedMobile = HTMLmobile.replace("%data%",bio.contacts.mobile);
+	var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+	var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+	var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+	var formattedPicture = HTMLbioPic.replace("%data%",bio.biopic);
+	var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%",bio.welcomeMsg);
+
+	var formattedContactEmail = HTMLcontactGeneric.replace("%data%", bio.contacts.mobile)
+					.replace("%contact%","mobile");
+	var formattedContacts = formattedContactEmail;	
+	$("#header").prepend(formatterRole).prepend(formattedName)
+	.append(formattedPicture).append(formattedWelcomeMsg);
+
+	$("#topContacts").append(formattedMobile).append(formattedEmail)
+		.append(formattedGithub).append(formattedTwitter)
+		.append(formattedLocation);
+
+	if(bio.skills.length > 0){
+		$("#header").append(HTMLskillsStart);
+		for( var i=0; i<bio.skills.length; i++){
+			var formattedSkills = HTMLskills.replace("%data%", bio.skills[i]);
+			$("#skills").append(formattedSkills);
+		}
+	}		
+	$("#main").append(internationalizeButton);
+	$("#mapDiv").append(googleMap);
+	$("#footerContacts").append(formattedMobile).append(formattedEmail)
+		.append(formattedGithub).append(formattedTwitter)
+		.append(formattedLocation);		
+}
 
 function displayWork(key){
 	var formattedWorkEmployer = HTMLworkEmployer.replace("%data%",work.jobs[key].companyName);
