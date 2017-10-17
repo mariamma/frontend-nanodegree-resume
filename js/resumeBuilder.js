@@ -36,7 +36,7 @@ var projects = {
   		"title":"Random Mapping",
   		"description": "Because of the asynchronous nature of Ajax, each chunk of data that is sent or received by the client occurs in a connection established specifically for that event. This creates a requirement that for every action, the client must poll the server, instead of listening, which incurs significant overhead. This overhead leads to several times higher latency with Ajax than what can be achieved with a technology such as websockets.",
   		"dates": "2013",
-  		"images":"images/proj.gif"
+  		"images":["images/proj.gif"]
   	}
  	]
 };
